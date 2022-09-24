@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../Redux/AppReducer/action";
 import { Followers } from "./Followers";
-import {GoVerified} from 'react-icons/go'
-
+import { GoVerified } from "react-icons/go";
 
 function Home() {
   const [input, setinput] = useState("");
@@ -20,11 +19,10 @@ function Home() {
     dispatch(getData(input));
   };
 
-  const handleFollowersBtn = (e,item) => {
+  const handleFollowersBtn = (e, item) => {
     setuserName(item.owner.login);
     setShowFollowers(true);
   };
-
 
   return (
     <div className="mainDiv">
@@ -49,23 +47,27 @@ function Home() {
       </div>
       <div className={ShowFollowers ? "displayData blur" : "displayData"}>
         {state?.map((item, index) => (
-          <div
-            key={index}
-            className="parent"
-            >
+          <div key={index} className="parent">
             <div className="ImageDiv">
-              <img src={item.owner.avatar_url} alt={item.login}
-              onClick={(e) => {
-              Navigater(`/reps_details/${item.id}`)
-              }}
-               />
+              <img
+                src={item.owner.avatar_url}
+                alt={item.login}
+                onClick={(e) => {
+                  Navigater(`/reps_details/${item.id}`);
+                }}
+              />
             </div>
             <div className="resDetailsDiv">
-              <p className="repsName">{item.name} <GoVerified color="green"/></p>
+              <p className="repsName">
+                {item.name} <GoVerified color="green" />
+              </p>
               <p className="repsDescription">{item.description}</p>
             </div>
             <div>
-              <button onClick={(e)=>handleFollowersBtn(e,item)} className="btn">
+              <button
+                onClick={(e) => handleFollowersBtn(e, item)}
+                className="btn"
+              >
                 Followers
               </button>
             </div>
